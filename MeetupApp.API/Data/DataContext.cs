@@ -1,7 +1,7 @@
 using MeetupApp.API.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace MeetupApp.API.Date
+namespace MeetupApp.API.Data
 {
     public class DataContext: DbContext
     {
@@ -11,5 +11,6 @@ namespace MeetupApp.API.Date
            
         }
          public DbSet<Value> Values { get; set; }
+         public DbSet<User> Users { get; set; }
     }
 }
