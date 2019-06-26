@@ -22,7 +22,7 @@ namespace MeetupApp.API.Controllers
 
         }
         // GET api/values
-        [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetValues()
         {
             // throw new Exception("Test Exception"); 
