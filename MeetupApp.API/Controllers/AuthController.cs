@@ -54,8 +54,7 @@ namespace MeetupApp.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
-         
-
+            
 
             var userFromRep = await _repo.Login(userForLoginDto.Username.ToLower(), userForLoginDto.Password);
 

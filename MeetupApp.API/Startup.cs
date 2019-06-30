@@ -29,11 +29,7 @@ namespace MeetupApp.API
             Configuration = configuration;
         }
 
-        // public Startup(IConfiguration configuration) 
-        // {
-        //     this.Configuration = configuration;
-               
-        // }
+ 
                 public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -73,10 +69,11 @@ namespace MeetupApp.API
                        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                        var error = context.Features.Get<IExceptionHandlerFeature>();
 
-                       if(error != null) {
 
+                       if(error != null) {
                            context.Response.AddApplicationError(error.Error.Message);
-                           await context.Response.WriteAsync(error.Error.Message);
+                            await context.Response.WriteAsync(error.Error.Message);
+
 
                        }
 
