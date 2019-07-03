@@ -28,6 +28,8 @@ namespace MeetupApp.API.Helpers
 
             CreateMap<Photo, PhotoForDetailedDto>();
 
+            CreateMap<UserForEditDto, User>();
+
         });
 
         

@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using MeetupApp.API.Data;
@@ -47,6 +49,25 @@ namespace MeetupApp.API.Controllers
             return Ok(userToReturn);
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUser(int Id, UserForEditDto userForEditDto)
+        {
+            if (Id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
+            var user = await repo.GetUser(Id);
+
+            mapper.Map(userForEditDto, user);
+
+            if (await repo.SaveAll())
+            {
+                return NoContent();
+
+            }
+            throw new Exception($"Updating user {Id} faild on save");
+        }
 
     }
 

@@ -29,6 +29,8 @@ export class UserDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(data => {
+      /* tslint:disable:no-string-literal */
+
       this.user = data['user'];
     });
 
@@ -51,6 +53,7 @@ export class UserDetailComponent implements OnInit {
 
   getImages() {
     const imageUrl = [];
+// tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < this.user.photos.length; i++ ) {
       imageUrl.push({
         small: this.user.photos[i].url,

@@ -26,6 +26,9 @@ import { UserDetailComponent } from './people/user-detail/user-detail.component'
 import { UserDetailResolver } from './resolvers/user-detail.resolver';
 import { UserListResolver } from './resolvers/user-list.resolver';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { UserEditComponent } from './people/user-edit/user-edit.component';
+import { UserEditResolver } from './resolvers/user-edit.resolver';
+import { PreventUnsavedChangesGuard } from 'src/guards/prevent-unsaved-changes.guard';
 
 
 export function tokenGetter() {
@@ -45,7 +48,8 @@ export function tokenGetter() {
       MessagesComponent,
       UserListComponent,
       UserCardComponent,
-      UserDetailComponent
+      UserDetailComponent,
+      UserEditComponent
    ],
    imports: [
       BrowserModule,
@@ -70,7 +74,9 @@ export function tokenGetter() {
       AuthGuard,
       UserService,
       UserDetailResolver,
-      UserListResolver
+      UserListResolver,
+      UserEditResolver,
+      PreventUnsavedChangesGuard
 
    ],
    bootstrap: [

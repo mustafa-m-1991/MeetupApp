@@ -9,6 +9,9 @@ import { UserListComponent } from './people/user-list/user-list.component';
 import { UserDetailComponent } from './people/user-detail/user-detail.component';
 import { UserDetailResolver } from './resolvers/user-detail.resolver';
 import { UserListResolver } from './resolvers/user-list.resolver';
+import { UserEditComponent } from './people/user-edit/user-edit.component';
+import { UserEditResolver } from './resolvers/user-edit.resolver';
+import { PreventUnsavedChangesGuard } from 'src/guards/prevent-unsaved-changes.guard';
 
 const routes: Routes = [
   {
@@ -31,22 +34,28 @@ const routes: Routes = [
       {
         path: 'list',
         component: ListComponent
-      }
-      , {
+      },
+      {
         path: 'people',
         component: UserListComponent,
-        resolve: {users: UserListResolver}
-
-      }
-      ,
+        resolve: { users: UserListResolver }
+      },
+      {
+        path: 'people/edit',
+        component: UserEditComponent,
+        resolve: { user: UserEditResolver },
+        canDeactivate : [PreventUnsavedChangesGuard]
+      },
       {
         path: 'people/:id',
         component: UserDetailComponent,
-        resolve: {user: UserDetailResolver}
+        resolve: { user: UserDetailResolver }
       }
+
+
+
     ]
   },
-
   {
     path: '**',
     redirectTo: '',
